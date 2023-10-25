@@ -1,0 +1,47 @@
+# These are some examples of commonly ignored file patterns.
+# You should customize this list as applicable to your project.
+# Learn more about .gitignore:
+#     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+/data/
+/fixtures/
+
+# Node artifact files
+node_modules/
+auth.json
+/dist/
+/bin/
+/vendor/
+/var/
+
+.env
+.fleet
+.env.*
+!.env.stage
+!.env.debug
+.phpunit.result.cache
+
+docker-compose.override.yml
+
+# Log files
+*.log
+
+# Package files
+*.jar
+
+# Maven
+target/
+dist/
+
+# JetBrains IDE
+.idea/
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+# CI/CD builds
+/build

@@ -1,5 +1,25 @@
 version: "3"
 services:
+  rabbitmq:
+    image: rabbitmq:3.9.7-management-alpine
+    hostname: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - ./../../data/dev/rabbitmq:/var/lib/rabbitmq
+    networks:
+      - dev_environment
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    restart: always
   postgresql:
     image: postgres:13.5-alpine
     container_name: postgresql

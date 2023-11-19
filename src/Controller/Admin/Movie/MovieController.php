@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin\Movie;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,7 @@ class MovieController
     }
 
     #[Route('/create', name: 'create')]
-    public function create(): Response
+    public function create(EntityManagerInterface $manager): Response
     {
         return new JsonResponse();
     }

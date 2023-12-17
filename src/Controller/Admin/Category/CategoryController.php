@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin\Movie;
+namespace App\Controller\Admin\Category;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/movie', name: 'movie.')]
-class MovieController extends AbstractController
+#[Route('/category', name: 'category.')]
+class CategoryController extends AbstractController
 {
     #[Route('/list', name: 'list')]
     public function list(): Response
@@ -17,10 +17,7 @@ class MovieController extends AbstractController
         return new JsonResponse();
     }
 
-    #[Route('/create', name: 'create', methods: [
-        'GET',
-        'POST',
-    ])]
+    #[Route('/create', name: 'create', methods: ['POST'])]
     public function create(EntityManagerInterface $manager): Response
     {
 

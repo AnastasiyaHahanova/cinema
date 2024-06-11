@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\Movie;
 
-use App\Entity\Movie;
-use App\Form\Movie\MovieType;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Movie\Movie;
+use App\Entity\Movie\MovieInterface;
+use App\Normalizer\MovieNormalizer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/v1/movie/', name: 'movie.')]
-class MovieController extends AbstractController
+class MovieController
 {
+    public function __construct(private readonly MovieNormalizer $normalizer)
+    {
+    }
+
     #[Route('/list', name: 'list')]
     public function list(): Response
     {
@@ -23,15 +26,16 @@ class MovieController extends AbstractController
     }
 
     #[Route('create', name: 'v1_create_movie', methods: ['POST'])]
-    public function create(Request $request, EntityManagerInterface $manager): Response
+    public function create(Request $request): MovieInterface
     {
+        dd('sdf');
         $movie = new Movie();
-        $form = $this->createForm(MovieType::class, $movie);
-        $form->submit($request->toArray());
+//        $form = $this->createForm(MovieType::class, $movie);
+//        $form->submit($request->toArray());
         $manager->persist($movie);
         $manager->flush();
 
-        return new JsonResponse();
+        return $this->normalizer->normalize($movie);
     }
 
     #[Route('/edit', name: 'edit')]

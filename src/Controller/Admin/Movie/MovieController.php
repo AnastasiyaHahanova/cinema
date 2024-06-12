@@ -6,6 +6,8 @@ namespace App\Controller\Admin\Movie;
 
 use App\Entity\Movie\Movie;
 use App\Entity\Movie\MovieInterface;
+use App\Form\Resolver\FormResolver;
+use App\Form\Type\Movie\MovieType;
 use App\Normalizer\MovieNormalizer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +28,15 @@ class MovieController
     }
 
     #[Route('create', name: 'v1_create_movie', methods: ['POST'])]
-    public function create(Request $request): MovieInterface
+    public function create(
+        Request $request,
+        #[FormResolver(
+            MovieType::class,
+            ''
+        )] MovieInterface $movie
+    ): MovieInterface
     {
-        dd('sdf');
-        $movie = new Movie();
-//        $form = $this->createForm(MovieType::class, $movie);
-//        $form->submit($request->toArray());
-        $manager->persist($movie);
-        $manager->flush();
+
 
         return $this->normalizer->normalize($movie);
     }

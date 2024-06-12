@@ -14,4 +14,25 @@ return static function (DoctrineConfig $doctrineConfig): void {
             ->url(env('DATABASE_URL'))
             ->charset('utf8')
             ->serverVersion('13.5');
+
+    $doctrineConfig->orm()
+        ->entityManager('default')
+        ->connection('default')
+        ->mapping('App')
+        ->isBundle(false)
+        ->dir('%kernel.project_dir%/src/Entity')
+        ->prefix('App\Entity')
+        ->alias('App');
+
+
+//
+//    $doctrineConfig->orm()
+//        ->autoGenerateProxyClasses(true)
+//        ->entityManager('default')
+//        ->namingStrategy('doctrine.orm.naming_strategy.underscore_number_aware')
+//        ->autoMapping(true)
+//        ->classMetadataFactoryName(ClassMetadataFactory::class);
+
+
+
 };

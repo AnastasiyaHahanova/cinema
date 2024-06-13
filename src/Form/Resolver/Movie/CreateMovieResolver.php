@@ -13,6 +13,9 @@ class CreateMovieResolver implements FormResolverInterface
 {
     public function resolve(FormInterface $form): MovieInterface
     {
-        return new Movie();
+        $movie = new Movie();
+        $movie->setName($form->get('name')->getData());
+
+        return $movie;
     }
 }

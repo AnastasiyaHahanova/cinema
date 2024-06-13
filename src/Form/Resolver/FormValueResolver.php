@@ -31,6 +31,7 @@ class FormValueResolver implements ValueResolverInterface
 
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
+
         /**
          * @var FormResolver[] $attributes
          */
@@ -47,6 +48,8 @@ class FormValueResolver implements ValueResolverInterface
             $form = $this->factory
                 ->create(type: $attribute->getType(), options: $attribute->getOptions())
                 ->handleRequest($request);
+
+            $form->submit($request->toArray());
 
             yield $resolver->resolve($form);
         }

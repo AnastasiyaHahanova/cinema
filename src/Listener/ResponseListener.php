@@ -17,7 +17,7 @@ class ResponseListener
         $response = null;
 
         if (is_array($value)) {
-            $response = new JsonResponse(json_encode($value));
+            $response = new JsonResponse($value);
         }
 
         if (is_string($value)) {

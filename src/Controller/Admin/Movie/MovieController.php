@@ -17,28 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/v1/movie/', name: 'movie.')]
 class MovieController
 {
-    public function __construct(private readonly MovieNormalizer $normalizer)
-    {
-    }
 
     #[Route('/list', name: 'list')]
     public function list(): Response
     {
         return new JsonResponse();
-    }
-
-    #[Route('create', name: 'v1_create_movie', methods: ['POST'])]
-    public function create(
-        Request $request,
-        #[FormResolver(
-            MovieType::class,
-            ''
-        )] MovieInterface $movie
-    ): MovieInterface
-    {
-
-
-        return $this->normalizer->normalize($movie);
     }
 
     #[Route('/edit', name: 'edit')]

@@ -27,9 +27,8 @@ class CreateMovieController
             MovieType::class,
             CreateMovieResolver::class
         )] MovieInterface $movie
-    ): MovieInterface
+    ): array
     {
-        dd($movie);
         $movie = current($this->manager->create($movie));
 
         return $this->normalizer->normalize($movie);

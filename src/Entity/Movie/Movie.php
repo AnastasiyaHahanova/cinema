@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Movie;
 
-use App\Repository\CategoryRepository;
+use App\Repository\Category\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]

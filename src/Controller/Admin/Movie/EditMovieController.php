@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/v1/movie/', name: 'movie.')]
-class MovieController
+class EditMovieController
 {
 
     #[Route('/list', name: 'list')]

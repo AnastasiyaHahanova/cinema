@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Controller\Admin\Movie\CreateMovieController;
+use App\Controller\Admin\Movie\EditMovieController;
 use App\Controller\Admin\Movie\ListMovieController;
 use App\Manager\Movie\MovieManagerInterface;
 use App\Normalizer\MovieNormalizer;
@@ -27,4 +28,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(MovieNormalizer::class)
         ]);
 
+    $services->set(EditMovieController::class)
+        ->args([
+            service(MovieRepositoryInterface::class),
+            service(MovieNormalizer::class)
+        ]);
 };

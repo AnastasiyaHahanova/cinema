@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\Movie;
 
-use App\Entity\Movie\Movie;
-use App\Entity\Movie\MovieInterface;
-use App\Form\Resolver\FormResolver;
-use App\Form\Type\Movie\MovieType;
-use App\Normalizer\MovieNormalizer;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\Interfaces\Movie\FindOneByIdInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-#[Route('/v1/movie/', name: 'movie.')]
 class EditMovieController
 {
-
-    #[Route('/list', name: 'list')]
-    public function list(): Response
+    public function __construct(
+        private readonly FindOneByIdInterface $movieRepository,
+        private readonly NormalizerInterface $normalizer
+    )
     {
-        return new JsonResponse();
     }
 
-    #[Route('/edit', name: 'edit')]
-    public function edit(): Response
+    #[Route('/v1/movie/edit', name: 'v1.movie.edit', methods: Request::METHOD_PUT)]
+    public function edit(int $id): Response
     {
-        return new JsonResponse();
+        $movie = $this->movieRepository->findOneById($id);
+
+        return $this->normalizer->normalize($movie);
     }
 }

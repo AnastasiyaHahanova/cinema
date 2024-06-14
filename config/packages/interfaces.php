@@ -13,4 +13,3 @@ return static function (DoctrineConfig $doctrineConfig): void {
     $doctrineConfig->orm()->resolveTargetEntity(CategoryInterface::class, Category::class);
     $doctrineConfig->orm()->resolveTargetEntity(MovieInterface::class, Movie::class);
 };
- 

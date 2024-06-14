@@ -7,9 +7,6 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20240608213657 extends AbstractMigration
 {
     public function getDescription(): string
@@ -21,7 +18,6 @@ final class Version20240608213657 extends AbstractMigration
     {
         $this->addSql('CREATE SEQUENCE movie_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE movie (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-
     }
 
     public function down(Schema $schema): void

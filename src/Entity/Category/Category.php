@@ -8,7 +8,7 @@ use App\Repository\Category\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+class Category implements CategoryInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,14 +16,14 @@ class Category
     private ?int $id = null;
     //
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name = '';
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

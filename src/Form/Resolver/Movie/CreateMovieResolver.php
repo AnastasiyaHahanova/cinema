@@ -15,6 +15,9 @@ class CreateMovieResolver implements FormResolverInterface
     {
         $movie = new Movie();
         $movie->setName($form->get('name')->getData());
+        $movie->setDuration($form->get('duration')->getData());
+        $movie->setRating($form->get('rating')->getData());
+        $movie->setCategory();
 
         return $movie;
     }

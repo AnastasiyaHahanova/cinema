@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Movie;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,18 @@ class MovieType extends AbstractType
         $builder->setMethod(Request::METHOD_POST);
         $builder
             ->add('name', TextType::class, [
+                'required' => true,
+            ]);
+        $builder
+            ->add('name', TextType::class, [
+                'required' => true,
+            ]);
+        $builder
+            ->add('rating', IntegerType::class, [
+                'required' => true,
+            ]);
+        $builder
+            ->add('duration', IntegerType::class, [
                 'required' => true,
             ]);
     }

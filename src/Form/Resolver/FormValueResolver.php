@@ -6,6 +6,8 @@ namespace App\Form\Resolver;
 
 use App\Exception\Form\Resolver\FormResolverNotFoundException;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Exception\JsonException;
+use Symfony\Component\HttpFoundation\Exception\RequestExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -19,19 +21,19 @@ class FormValueResolver implements ValueResolverInterface
     private readonly array $resolvers;
 
     /**
-     * @param FormFactoryInterface $factory
+     * @param FormFactoryInterface                                    $factory
      * @param Traversable<string|class-string, FormResolverInterface> $resolvers
      */
     public function __construct(
         private readonly FormFactoryInterface $factory,
         Traversable $resolvers,
-    ) {
+    )
+    {
         $this->resolvers = iterator_to_array($resolvers);
     }
 
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-
         /**
          * @var FormResolver[] $attributes
          */
@@ -49,7 +51,14 @@ class FormValueResolver implements ValueResolverInterface
                 ->create(type: $attribute->getType(), options: $attribute->getOptions())
                 ->handleRequest($request);
 
-            $form->submit($request->toArray());
+            $content = [];
+            if(!empty($request->getContent())){
+                $content = $request->toArray();
+            }
+
+            $query = $request->query->all();
+            $data = array_merge($content, $query);
+            $form->submit($data);
 
             yield $resolver->resolve($form);
         }

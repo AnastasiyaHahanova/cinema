@@ -6,6 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Form\Resolver\FormValueResolver;
 use App\Form\Resolver\Movie\CreateMovieResolver;
+use App\Form\Resolver\Movie\ListMovieResolver;
 use Symfony\Component\Form\FormFactoryInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -20,4 +21,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.argument_value_resolver');
 
     $services->set(CreateMovieResolver::class);
+
+    $services->set(ListMovieResolver::class);
 };

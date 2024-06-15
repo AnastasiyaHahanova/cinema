@@ -30,6 +30,9 @@ class Movie implements MovieInterface
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'category_id')]
     private readonly CategoryInterface $category;
+    //
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
+    private bool $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -76,5 +79,15 @@ class Movie implements MovieInterface
     public function setCategory(CategoryInterface $category): void
     {
         $this->category = $category;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): void
+    {
+        $this->isDeleted = $isDeleted;
     }
 }

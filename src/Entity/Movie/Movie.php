@@ -29,7 +29,7 @@ class Movie implements MovieInterface
     //
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'category_id')]
-    private readonly CategoryInterface $category;
+    private CategoryInterface $category;
     //
     #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
     private bool $isDeleted = false;

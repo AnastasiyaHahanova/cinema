@@ -8,7 +8,7 @@ use App\Controller\Admin\Movie\CreateMovieController;
 use App\Controller\Admin\Movie\EditMovieController;
 use App\Controller\Admin\Movie\ListMovieController;
 use App\Manager\Movie\MovieManagerInterface;
-use App\Normalizer\MovieNormalizer;
+use App\Normalizer\Movie\MovieNormalizer;
 use App\Repository\Interfaces\Movie\MovieRepositoryInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

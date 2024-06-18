@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Normalizer\CategoryNormalizer;
-use App\Normalizer\MovieNormalizer;
+use App\Normalizer\Category\CategoryNormalizer;
+use App\Normalizer\Movie\MovieNormalizer;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();

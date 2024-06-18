@@ -8,7 +8,7 @@ use App\Form\Request\CriteriaInterface;
 use App\Form\Resolver\FormResolver;
 use App\Form\Resolver\Movie\ListMovieResolver;
 use App\Form\Type\Movie\ListMovieType;
-use App\Normalizer\MovieNormalizer;
+use App\Normalizer\Movie\MovieNormalizer;
 use App\Repository\Interfaces\Movie\FindAllByInterface;
 use Symfony\Component\Routing\Annotation\Route;
 

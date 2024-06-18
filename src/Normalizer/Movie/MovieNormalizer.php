@@ -2,18 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Normalizer;
+namespace App\Normalizer\Movie;
 
-use App\Entity\Category\CategoryInterface;
+use App\Entity\Movie\MovieInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @method array getSupportedTypes(?string $format)
  */
-class CategoryNormalizer implements NormalizerInterface
+class MovieNormalizer implements NormalizerInterface
 {
+    public function __construct(
+        private readonly NormalizerInterface $categoryNormalizer
+    )
+    {
+    }
+
     /**
-     * @param CategoryInterface $object
+     * @param MovieInterface $object
      * @param string|null    $format
      * @param array          $context
      *
@@ -23,11 +29,14 @@ class CategoryNormalizer implements NormalizerInterface
     {
         return [
             'name' => $object->getName(),
+            'duration' => $object->getDuration(),
+            'rating' => $object->getRating(),
+            'category' => $this->categoryNormalizer->normalize($object->getCategory()),
         ];
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null): bool
     {
-        return $data instanceof CategoryInterface;
+        return $data instanceof MovieInterface;
     }
 }

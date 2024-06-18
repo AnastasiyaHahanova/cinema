@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Address;
 
-use App\Repository\Address\CityRepository;
+use App\Repository\City\CityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CityRepository::class)]
@@ -20,10 +20,12 @@ class City implements CityInterface
     //
     #[ORM\Column(length: 255)]
     private string $regionName = '';
-
     //
     #[ORM\Column(length: 255)]
     private string $countryName = '';
+    //
+    #[ORM\Column(length: 255)]
+    private string $cityCode = '';
 
     public function getId(): ?int
     {
@@ -50,6 +52,7 @@ class City implements CityInterface
     public function setRegionName(string $regionName): void
     {
         $this->regionName = $regionName;
+
     }
 
     public function getCountryName(): string
@@ -60,5 +63,15 @@ class City implements CityInterface
     public function setCountryName(string $countryName): void
     {
         $this->countryName = $countryName;
+    }
+
+    public function getCityCode(): string
+    {
+        return $this->cityCode;
+    }
+
+    public function setCityCode(string $cityCode): void
+    {
+        $this->cityCode = $cityCode;
     }
 }

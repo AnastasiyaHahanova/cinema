@@ -11,4 +11,8 @@ interface CityInterface
     public function getRegionName(): string;
 
     public function getCountryName(): string;
+
+    public function getCityCode(): string;
+
+    public function setCityCode(string $cityCode): void;
 }

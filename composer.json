@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
         "php-amqplib/rabbitmq-bundle": "^2.13",
+        "predis/predis": "^2.2",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
@@ -19,7 +20,8 @@
         "symfony/messenger": "6.3.*",
         "symfony/runtime": "6.3.*",
         "symfony/serializer": "6.3.*",
-        "symfony/yaml": "6.3.*"
+        "symfony/yaml": "6.3.*",
+        "ext-redis": "*"
     },
     "config": {
         "allow-plugins": {

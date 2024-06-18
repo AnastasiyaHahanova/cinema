@@ -36,4 +36,9 @@ class RedisStorageManager
     {
         $this->redis->expire($key, $ttl);
     }
+
+    public function hSet(string $key, string $hashKey, string $value): void
+    {
+        $this->redis->hSet($key, $hashKey, $value);
+    }
 }

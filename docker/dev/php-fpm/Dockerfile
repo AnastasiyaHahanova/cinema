@@ -14,6 +14,10 @@ RUN apk add --no-cache autoconf g++ make \
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 RUN docker-php-ext-install pdo_pgsql
 
+RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
+&& pecl install redis \
+&& docker-php-ext-enable redis.so
+
 WORKDIR /data
 
 VOLUME /data

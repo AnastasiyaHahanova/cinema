@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Traversable;
 
 class FormValueResolver implements ValueResolverInterface
@@ -50,13 +51,18 @@ class FormValueResolver implements ValueResolverInterface
                 ->handleRequest($request);
 
             $content = [];
-            if(!empty($request->getContent())){
+            if (!empty($request->getContent())) {
                 $content = $request->toArray();
             }
 
             $query = $request->query->all();
             $data = array_merge($content, $query);
             $form->submit($data);
+            if (!$form->isValid()) {
+                foreach ($form->getErrors(true) as $error) {
+                    throw new BadRequestHttpException($error->getMessage());
+                }
+            }
 
             yield $resolver->resolve($form);
         }

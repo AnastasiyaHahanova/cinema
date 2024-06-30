@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints;
 
 class MovieType extends AbstractType
 {
@@ -36,6 +37,10 @@ class MovieType extends AbstractType
         $builder
             ->add('duration', IntegerType::class, [
                 'required' => true,
+                'constraints'=>[
+                    new Constraints\Required(),
+                    new Constraints\NotBlank()
+                ]
             ]);
     }
 

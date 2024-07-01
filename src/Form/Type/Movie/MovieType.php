@@ -32,15 +32,21 @@ class MovieType extends AbstractType
             ]);
         $builder
             ->add('rating', IntegerType::class, [
-                'required' => true,
+                'empty_data' => 0,
             ]);
         $builder
             ->add('duration', IntegerType::class, [
-                'required' => true,
-                'constraints'=>[
+                'constraints' => [
                     new Constraints\Required(),
-                    new Constraints\NotBlank()
-                ]
+                    new Constraints\NotBlank(),
+                ],
+            ]);
+        $builder
+            ->add('category_id', IntegerType::class, [
+                'constraints' => [
+                    new Constraints\Required(),
+                    new Constraints\NotBlank(),
+                ],
             ]);
     }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use App\Listener\ExceptionListener;
 use App\Listener\ResponseListener;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -12,4 +13,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services
         ->set(ResponseListener::class)
         ->tag('kernel.event_listener', ['event' => 'kernel.view']);
+
+    $services
+        ->set(ExceptionListener::class)
+        ->tag('kernel.event_listener', ['event' => 'kernel.exception']);
 };

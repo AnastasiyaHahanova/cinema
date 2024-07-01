@@ -11,13 +11,17 @@ use Symfony\Component\Form\FormInterface;
 
 class CreateMovieResolver implements FormResolverInterface
 {
+    public function __construct()
+    {
+    }
+
     public function resolve(FormInterface $form): MovieInterface
     {
         $movie = new Movie();
         $movie->setName($form->get('name')->getData());
         $movie->setDuration($form->get('duration')->getData());
         $movie->setRating($form->get('rating')->getData());
-        $movie->setCategory();
+        $movie->setCategory($form->get('category_id')->getData());
 
         return $movie;
     }

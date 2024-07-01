@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Form\Resolver;
 
 use App\Exception\Form\Resolver\FormResolverNotFoundException;
+use App\Exception\Form\Type\FormErrorsException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Traversable;
 
 class FormValueResolver implements ValueResolverInterface
@@ -59,9 +59,11 @@ class FormValueResolver implements ValueResolverInterface
             $data = array_merge($content, $query);
             $form->submit($data);
             if (!$form->isValid()) {
+                $errors = [];
                 foreach ($form->getErrors(true) as $error) {
-                    throw new BadRequestHttpException($error->getMessage());
+                    $errors[$error->getOrigin()->getName()] = $error->getMessage();
                 }
+                throw new FormErrorsException($errors);
             }
 
             yield $resolver->resolve($form);

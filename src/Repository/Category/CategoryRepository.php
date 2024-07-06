@@ -29,4 +29,14 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     {
         return $this->find($id);
     }
+
+    public function findAllBy(array $criteria, array $orderBy = null, $limit = null, $offset = null): array
+    {
+       return $this->findBy(
+           $criteria,
+           $orderBy,
+           $limit,
+           $offset
+       );
+    }
 }

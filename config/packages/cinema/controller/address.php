@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Controller\Admin\Address\CreateAddressController;
-use App\Controller\Admin\Category\DeleteCategoryController;
-use App\Controller\Admin\Category\EditCategoryController;
-use App\Controller\Admin\Category\ListCategoryController;
+use App\Controller\Admin\Address\ListAddressController;
 use App\Manager\Address\AddressManagerInterface;
-use App\Manager\Category\CategoryManagerInterface;
 use App\Normalizer\Address\AddressNormalizer;
-use App\Normalizer\Category\CategoryNormalizer;
-use App\Repository\Interfaces\Category\CategoryRepositoryInterface;
+use App\Repository\Interfaces\Address\AddressRepositoryInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -25,22 +21,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(AddressNormalizer::class),
         ]);
 
-    $services->set(ListCategoryController::class)
+    $services->set(ListAddressController::class)
         ->args([
-            service(CategoryRepositoryInterface::class),
-            service(CategoryNormalizer::class),
-        ]);
-
-    $services->set(EditCategoryController::class)
-        ->args([
-            service(CategoryManagerInterface::class),
-            service(CategoryNormalizer::class),
-        ]);
-
-    $services->set(DeleteCategoryController::class)
-        ->args([
-            service(CategoryRepositoryInterface::class),
-            service(CategoryManagerInterface::class),
-            service(CategoryNormalizer::class)
+            service(AddressRepositoryInterface::class),
+            service(AddressNormalizer::class),
         ]);
 };

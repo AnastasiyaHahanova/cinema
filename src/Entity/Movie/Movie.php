@@ -86,7 +86,7 @@ class Movie implements MovieInterface
         return $this->isDeleted;
     }
 
-    public function setIsDeleted(bool $isDeleted): void
+    public function setDeleted(bool $isDeleted): void
     {
         $this->isDeleted = $isDeleted;
     }

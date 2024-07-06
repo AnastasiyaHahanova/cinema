@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Entity\Movie;
 
 use App\Entity\Category\CategoryInterface;
+use App\Entity\Interfaces\DeleteInterface;
 
-interface MovieInterface
+interface MovieInterface extends DeleteInterface
 {
     public function getName(): string;
 

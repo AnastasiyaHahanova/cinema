@@ -7,6 +7,7 @@ namespace App\Entity\Cinema;
 use App\Entity\Address\Address;
 use App\Entity\Address\AddressInterface;
 use App\Repository\Cinema\CinemaRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CinemaRepository::class)]
@@ -17,13 +18,15 @@ class Cinema implements CinemaInterface
     #[ORM\Column]
     private ?int $id = null;
     //
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length:  255)]
     private string $name = '';
     //
     #[ORM\ManyToOne(targetEntity: Address::class)]
     #[ORM\JoinColumn(name: 'address_id')]
     private AddressInterface $address;
-
+    //
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
+    private bool $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -50,5 +53,15 @@ class Cinema implements CinemaInterface
     public function setAddress(AddressInterface $address): void
     {
         $this->address = $address;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setDeleted(bool $isDeleted): void
+    {
+        $this->isDeleted = $isDeleted;
     }
 }

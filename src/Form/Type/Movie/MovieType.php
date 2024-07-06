@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Movie;
 
+use App\Validator\Category\ExistCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -46,6 +47,7 @@ class MovieType extends AbstractType
                 'constraints' => [
                     new Constraints\Required(),
                     new Constraints\NotBlank(),
+                    new ExistCategory()
                 ],
             ]);
     }

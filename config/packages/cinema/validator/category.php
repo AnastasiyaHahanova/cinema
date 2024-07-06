@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Form\Resolver\Movie\CreateMovieResolver;
-use App\Form\Resolver\Movie\ListMovieResolver;
-use App\Repository\Interfaces\Category\CategoryRepositoryInterface;
 use App\Tags;
+use App\Repository\Interfaces\Category\CategoryRepositoryInterface;
+use App\Validator\Category\ExistCategoryValidator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
-    $services->defaults()->tag(Tags::FORM_RESOLVER);
+    $services->defaults()->tag(Tags::CONSTRAINT_VALIDATOR);
 
-    $services->set(CreateMovieResolver::class)
+    $services->set(ExistCategoryValidator::class)
         ->args([
             service(CategoryRepositoryInterface::class),
         ]);
-
-    $services->set(ListMovieResolver::class);
 };

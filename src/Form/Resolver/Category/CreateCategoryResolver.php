@@ -14,7 +14,7 @@ class CreateCategoryResolver implements FormResolverInterface
     public function resolve(FormInterface $form): CategoryInterface
     {
         $category = new Category();
-        $category->setName($form->get('name')->getData());
+        $category->setName(ucfirst($form->get('name')->getData()));
 
         return $category;
     }

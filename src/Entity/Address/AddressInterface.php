@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity\Address;
 
-interface AddressInterface
+use App\Entity\Interfaces\DeleteInterface;
+
+interface AddressInterface extends DeleteInterface
 {
     public function getFlat(): string;
 

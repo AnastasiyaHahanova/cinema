@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity\Address;
 
 use App\Repository\Address\AddressRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
@@ -30,6 +31,9 @@ class Address implements AddressInterface
     //
     #[ORM\Column(length: 255)]
     private string $description = '';
+    //
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN, options: ['default' => false])]
+    private bool $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -89,5 +93,15 @@ class Address implements AddressInterface
     public function setCity(CityInterface $city): void
     {
         $this->city = $city;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setDeleted(bool $isDeleted): void
+    {
+        $this->isDeleted = $isDeleted;
     }
 }

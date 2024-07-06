@@ -19,7 +19,7 @@ class Category implements CategoryInterface
     #[ORM\Column(length: 255)]
     private string $name = '';
     //
-    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN, options: ['default' => false])]
     private bool $isDeleted = false;
 
     public function getId(): ?int

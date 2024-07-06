@@ -30,4 +30,9 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
 
         return $result;
     }
+
+    public function findOneById(int $id): ?CityInterface
+    {
+        return $this->find($id);
+    }
 }

@@ -6,7 +6,7 @@ namespace App\Validator\Category;
 
 use Symfony\Component\Validator\Constraint;
 
-class ExistCategory extends Constraint
+class ExistCategoryConstraint extends Constraint
 {
     public string $message = 'Category with id "{{ id }}" does not exist.';
     public string $mode = 'strict';

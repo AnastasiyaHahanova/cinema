@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type\Movie;
+namespace App\Form\Type\Address;
 
-use App\Validator\Category\ExistCategoryConstraint;
+use App\Validator\City\ExistCityConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
-class MovieType extends AbstractType
+class AddressType extends AbstractType
 {
     public function getBlockPrefix(): string
     {
@@ -23,31 +23,39 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->setMethod(Request::METHOD_POST);
+
         $builder
-            ->add('name', TextType::class, [
+            ->add('flat', TextType::class, [
+                'required' => false,
+            ]);
+
+        $builder
+            ->add('description', TextType::class, [
+                'required' => false,
+            ]);
+
+        $builder
+            ->add('building', TextType::class, [
                 'required' => true,
+                'constraints'=>[
+                    new Constraints\Required(),
+                    new Constraints\NotBlank(),
+                ]
             ]);
         $builder
-            ->add('name', TextType::class, [
+            ->add('street_name', TextType::class, [
                 'required' => true,
+                'constraints'=>[
+                    new Constraints\Required(),
+                    new Constraints\NotBlank(),
+                ]
             ]);
         $builder
-            ->add('rating', IntegerType::class, [
-                'empty_data' => 0,
-            ]);
-        $builder
-            ->add('duration', IntegerType::class, [
+            ->add('city_id', IntegerType::class, [
                 'constraints' => [
                     new Constraints\Required(),
                     new Constraints\NotBlank(),
-                ],
-            ]);
-        $builder
-            ->add('category_id', IntegerType::class, [
-                'constraints' => [
-                    new Constraints\Required(),
-                    new Constraints\NotBlank(),
-                    new ExistCategoryConstraint()
+                    new ExistCityConstraint()
                 ],
             ]);
     }

@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Manager\Category\CategoryManager;
-use App\Manager\Category\CategoryManagerInterface;
+use App\Manager\Address\AddressManager;
+use App\Manager\Address\AddressManagerInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services
-        ->set(CategoryManagerInterface::class, CategoryManager::class)
+        ->set(AddressManagerInterface::class, AddressManager::class)
         ->args([
-            service('doctrine.orm.default_entity_manager'),
+           service('doctrine.orm.default_entity_manager')
         ]);
+
 };

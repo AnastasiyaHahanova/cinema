@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class ExistCategoryValidator extends ConstraintValidator
+class ExistCategoryConstraintValidator extends ConstraintValidator
 {
     public function __construct(public readonly FindOneByIdInterface $repository)
     {
@@ -17,8 +17,8 @@ class ExistCategoryValidator extends ConstraintValidator
 
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (!$constraint instanceof ExistCategory) {
-            throw new UnexpectedTypeException($constraint, ExistCategory::class);
+        if (!$constraint instanceof ExistCategoryConstraint) {
+            throw new UnexpectedTypeException($constraint, ExistCategoryConstraint::class);
         }
 
         if (empty($value)) {

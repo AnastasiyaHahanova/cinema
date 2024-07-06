@@ -25,7 +25,7 @@ class Cinema implements CinemaInterface
     #[ORM\JoinColumn(name: 'address_id')]
     private AddressInterface $address;
     //
-    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN, options: ['default' => false])]
     private bool $isDeleted = false;
 
     public function getId(): ?int

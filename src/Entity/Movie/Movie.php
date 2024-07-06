@@ -21,17 +21,17 @@ class Movie implements MovieInterface
     #[ORM\Column(length: 255)]
     private string $name = '';
     //
-    #[ORM\Column(name: 'duration', type: Types::BIGINT)]
+    #[ORM\Column(name: 'duration', type: Types::BIGINT, options: ['default' => 0])]
     private int $duration = 0;
     //
-    #[ORM\Column(name: 'rating', type: Types::BIGINT)]
+    #[ORM\Column(name: 'rating', type: Types::BIGINT, options: ['default' => 0])]
     private int $rating = 0;
     //
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'category_id')]
     private CategoryInterface $category;
     //
-    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN)]
+    #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN, options: ['default' => false])]
     private bool $isDeleted = false;
 
     public function getId(): ?int

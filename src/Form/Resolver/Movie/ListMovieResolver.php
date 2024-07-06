@@ -14,7 +14,9 @@ class ListMovieResolver implements FormResolverInterface
     public function resolve(FormInterface $form): CriteriaInterface
     {
         $criteria = [];
-        $criteria['name'] = $form->get('name')->getData();
+        if($form->get('name')->getData()){
+            $criteria['name'] = $form->get('name')->getData();
+        }
 
         return new CriteriaRequest(
             $criteria,

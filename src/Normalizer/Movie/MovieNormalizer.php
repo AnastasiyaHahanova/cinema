@@ -28,6 +28,7 @@ class MovieNormalizer implements NormalizerInterface
     public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
         return [
+            'id' => $object->getId(),
             'name' => $object->getName(),
             'duration' => $object->getDuration(),
             'rating' => $object->getRating(),

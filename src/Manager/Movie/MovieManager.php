@@ -45,6 +45,21 @@ class MovieManager implements MovieManagerInterface
      *
      * @return MovieInterface[]
      */
+    public function delete(...$movies): array
+    {
+        foreach ($movies as $movie) {
+            $movie->setDeleted(true);
+        }
+        $this->manager->flush();
+
+        return $movies;
+    }
+
+    /**
+     * @param MovieInterface[] $movies
+     *
+     * @return MovieInterface[]
+     */
     public function remove(...$movies): array
     {
         foreach ($movies as $movie) {

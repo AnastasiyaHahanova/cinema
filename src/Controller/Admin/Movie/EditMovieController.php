@@ -6,7 +6,6 @@ namespace App\Controller\Admin\Movie;
 
 use App\Repository\Interfaces\Movie\FindOneByIdInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -20,7 +19,7 @@ class EditMovieController
     }
 
     #[Route('/v1/movies/{id}', name: 'v1.movies.edit', methods: Request::METHOD_PUT)]
-    public function edit(int $id): Response
+    public function edit(int $id): array
     {
         $movie = $this->movieRepository->findOneById($id);
 

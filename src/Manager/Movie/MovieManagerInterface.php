@@ -27,5 +27,12 @@ interface MovieManagerInterface
      *
      * @return MovieInterface[]
      */
+    public function delete(...$movies): array;
+
+    /**
+     * @param MovieInterface[] $movies
+     *
+     * @return MovieInterface[]
+     */
     public function remove(...$movies): array;
 }

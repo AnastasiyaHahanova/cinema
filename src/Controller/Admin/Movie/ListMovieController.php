@@ -21,7 +21,7 @@ class ListMovieController
     {
     }
 
-    #[Route('/v1/movie/list', name: 'v1.movie.list')]
+    #[Route('/v1/movies', name: 'v1.movies.list')]
     public function list(
         #[FormResolver(
             ListMovieType::class,

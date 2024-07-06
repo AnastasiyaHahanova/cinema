@@ -20,7 +20,7 @@ class DeleteMovieController
     {
     }
 
-    #[Route('/v1/movie/{id}/delete', name: 'v1.list.delete', methods: Request::METHOD_DELETE)]
+    #[Route('/v1/movies/{id}', name: 'v1.movies.delete', methods: Request::METHOD_DELETE)]
     public function delete(int $id): Response
     {
         $movie = $this->repository->findOneById($id);

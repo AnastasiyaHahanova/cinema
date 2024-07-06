@@ -22,7 +22,7 @@ class CreateMovieController
     {
     }
 
-    #[Route('/v1/movie/create', name: 'v1_create_movie', methods: Request::METHOD_POST)]
+    #[Route('/v1/movies', name: 'v1.movies.create', methods: Request::METHOD_POST)]
     public function create(
         #[FormResolver(
             MovieType::class,

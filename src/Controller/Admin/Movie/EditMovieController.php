@@ -19,7 +19,7 @@ class EditMovieController
     {
     }
 
-    #[Route('/v1/movie/edit', name: 'v1.movie.edit', methods: Request::METHOD_PUT)]
+    #[Route('/v1/movies', name: 'v1.movies.edit', methods: Request::METHOD_PUT)]
     public function edit(int $id): Response
     {
         $movie = $this->movieRepository->findOneById($id);

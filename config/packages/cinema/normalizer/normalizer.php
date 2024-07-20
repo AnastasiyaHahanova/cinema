@@ -6,6 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Normalizer\Address\AddressNormalizer;
 use App\Normalizer\Category\CategoryNormalizer;
+use App\Normalizer\Cinema\CinemaNormalizer;
 use App\Normalizer\City\CityNormalizer;
 use App\Normalizer\Movie\MovieNormalizer;
 
@@ -26,4 +27,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(CityNormalizer::class)
         ]);
+
+    $services->set(CinemaNormalizer::class);
 };

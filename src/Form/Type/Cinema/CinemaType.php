@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type\Movie;
+namespace App\Form\Type\Cinema;
 
-use App\Validator\Category\ExistCategoryConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints;
 
-class MovieType extends AbstractType
+class CinemaType extends AbstractType
 {
     public function getBlockPrefix(): string
     {
@@ -28,28 +26,7 @@ class MovieType extends AbstractType
                 'required' => true,
             ]);
         $builder
-            ->add('description', TextType::class, [
-                'required' => true,
-            ]);
-        $builder
-            ->add('rating', IntegerType::class, [
-                'empty_data' => 0,
-            ]);
-        $builder
-            ->add('duration', IntegerType::class, [
-                'constraints' => [
-                    new Constraints\Required(),
-                    new Constraints\NotBlank(),
-                ],
-            ]);
-        $builder
-            ->add('category_id', IntegerType::class, [
-                'constraints' => [
-                    new Constraints\Required(),
-                    new Constraints\NotBlank(),
-                    new ExistCategoryConstraint()
-                ],
-            ]);
+            ->add('address_id', IntegerType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

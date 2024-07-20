@@ -8,6 +8,7 @@ use App\Normalizer\Address\AddressNormalizer;
 use App\Normalizer\Category\CategoryNormalizer;
 use App\Normalizer\Cinema\CinemaNormalizer;
 use App\Normalizer\City\CityNormalizer;
+use App\Normalizer\Hall\HallNormalizer;
 use App\Normalizer\Movie\MovieNormalizer;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -29,4 +30,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(CinemaNormalizer::class);
+
+    $services->set(HallNormalizer::class);
 };

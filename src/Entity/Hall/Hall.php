@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entity\Hall;
 
-use App\Repository\Cinema\CinemaRepository;
+use App\Repository\Hall\HallRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CinemaRepository::class)]
+#[ORM\Entity(repositoryClass: HallRepository::class)]
 class Hall implements HallInterface
 {
     #[ORM\Id]

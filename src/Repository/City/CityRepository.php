@@ -24,7 +24,7 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
     {
         $result = [];
 
-        foreach ($this->findAll() as $city) {
+        foreach ($this->findBy([]) as $city) {
             $result[$city->getCityCode()] = $city;
         }
 

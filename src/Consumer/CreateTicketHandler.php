@@ -10,7 +10,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class CreateTicketHandler
 {
-    public function __invoke(CreateTicketMessage $message)
+    public function __invoke(CreateTicketMessage $message): void
     {
     }
 }

@@ -30,6 +30,9 @@ class Seat implements SeatInterface
     //
     #[ORM\Column(name: 'is_deleted', type: Types::BOOLEAN, options: ['default' => false])]
     private bool $isDeleted = false;
+    //
+    #[ORM\Column(name: 'is_reserved', type: Types::BOOLEAN, options: ['default' => false])]
+    private bool $isReserved = false;
 
     public function getId(): ?int
     {
@@ -76,5 +79,15 @@ class Seat implements SeatInterface
     public function setDeleted(bool $isDeleted): void
     {
         $this->isDeleted = $isDeleted;
+    }
+
+    public function isReserved(): bool
+    {
+        return $this->isReserved;
+    }
+
+    public function setReserved(bool $reserved): void
+    {
+        $this->isReserved = $reserved;
     }
 }
